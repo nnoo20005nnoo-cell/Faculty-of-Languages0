@@ -23,21 +23,23 @@
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased; /* تحسين مظهر الخط */
         }
 
+        /* تحسينات التأثير عند السكرول لتكون أسلس */
         @keyframes reveal {
-            from { opacity: 0; transform: scale(0.9) translateY(40px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from { opacity: 0; transform: translateY(30px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .animate-on-scroll {
             animation: reveal linear both;
             animation-timeline: view();
-            animation-range: entry 10% cover 30%;
+            animation-range: entry 5% cover 25%;
         }
 
         .hero {
-            min-height: 80vh; /* جعل الارتفاع مرن للجوال */
+            min-height: auto; /* ارتفاع مرن بدلاً من الثابت للجوال */
             background: linear-gradient(135deg, var(--primary-light), #e74c3c);
             display: flex;
             flex-direction: column;
@@ -45,91 +47,153 @@
             align-items: center;
             text-align: center;
             color: white;
-            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
-            padding: 40px 20px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            padding: 80px 20px 100px; /* زيادة الحشو ليتناسب مع الشكل المقطوع */
         }
 
         .hero h1 { 
             font-family: 'Amiri', serif; 
-            font-size: clamp(2rem, 8vw, 3.5rem); /* حجم خط مرن يتصغير تلقائياً */
+            font-size: clamp(1.8rem, 7vw, 3.5rem); /* حجم خط مرن ومحسن للجوال */
             margin-bottom: 20px; 
             line-height: 1.2;
+            padding: 0 10px;
         }
         
+        .hero p {
+            font-size: clamp(0.95rem, 3.5vw, 1.2rem); 
+            opacity: 0.9; 
+            margin-bottom: 30px; 
+            max-width: 700px;
+            padding: 0 15px;
+        }
+
         .verify-btn {
             background-color: var(--gold-bright);
             color: #8A0000;
-            padding: 15px 35px;
-            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            padding: clamp(12px, 3vw, 15px) clamp(25px, 6vw, 35px); /* حشو مرن */
+            font-size: clamp(1rem, 3.8vw, 1.4rem); /* حجم خط مرن */
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: 0.3s;
+            transition: transform 0.3s ease, background-color 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 10px;
+            white-space: nowrap; /* منع انقسام النص في الأزرار الضيقة */
         }
 
-        .verify-btn:hover { transform: scale(1.05); background-color: white; }
+        .verify-btn:hover { transform: translateY(-3px) scale(1.03); background-color: white; }
+        .verify-btn i { font-size: 1.2em; }
 
         .container { 
             max-width: 1100px; 
-            margin: -40px auto 50px; 
-            padding: 0 20px; 
+            margin: -60px auto 50px; /* تعديل المارجن العلوي ليتناسب مع الشكل الجديد */
+            padding: 0 15px; 
+            position: relative; /* لضمان ظهورها فوق الهيرو المقطوع */
+            z-index: 2;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 30px;
+            padding: clamp(20px, 5vw, 35px); /* حشو مرن داخل البطاقة */
             border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            margin-bottom: clamp(20px, 4vw, 30px); /* مسافة مرنة بين البطاقات */
             border-bottom: 5px solid var(--gold-bright);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(0,0,0,0.1); }
 
         .section-title {
             color: var(--primary-light);
-            font-size: clamp(1.5rem, 5vw, 2rem);
-            margin-bottom: 15px;
+            font-size: clamp(1.4rem, 4.5vw, 2rem); /* حجم عنوان مرن */
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 12px;
+            border-bottom: 2px solid rgba(178, 34, 34, 0.1); /* خط رفيع جداً ومدمج */
+            padding-bottom: 10px;
+        }
+        .section-title i { font-size: 0.9em; opacity: 0.9; }
+
+        .card p {
+            font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+            color: #444;
+            line-height: 1.7;
         }
 
+        /* تنسيقات التواصل المحسنة والمفصولة */
         .contact-box {
-            background: #fdfdfd;
-            border: 2px dashed var(--primary-light);
+            background: #ffffff;
+            border: 2px dashed rgba(178, 34, 34, 0.3); /* داش خطي أنعم */
             border-radius: 20px;
-            padding: 20px;
-            margin-top: 20px;
+            padding: clamp(15px, 4vw, 25px);
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* مسافة ثابتة بين العناصر */
         }
 
         .contact-item { 
-            font-size: clamp(1rem, 3.5vw, 1.2rem); 
-            margin: 12px 0; 
+            font-size: clamp(0.9rem, 3.6vw, 1.1rem); 
             display: flex; 
-            flex-wrap: wrap; /* لمنع تداخل النص في الشاشات الصغيرة جداً */
-            align-items: center; 
-            gap: 8px; 
+            align-items: flex-start; /* محاذاة للأعلى للأيقونات والنصوص المتعددة الأسطر */
+            gap: 12px; 
+            word-wrap: break-word; /* كسر الكلمات الطويلة */
+            overflow-wrap: break-word;
         }
-        .contact-item b { color: var(--primary-light); }
+
+        /* تحسين مظهر الخط النشاز - تم إزالة الخط القديم */
+        .contact-item b { 
+            color: var(--primary-light); 
+            min-width: 90px; /* مسافة بادئة ثابتة للعنوان */
+            display: inline-block;
+            white-space: nowrap; /* منع انقسام كلمة "الهاتف" */
+        }
+
+        .contact-value {
+            color: #555;
+            flex: 1; /* يأخذ المساحة المتبقية */
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-link:hover { color: var(--primary-light); }
+
+        /* إيقونات الهاتف والواتساب المنفصلة */
+        .phone-icon { color: #3498db; } /* لون أزرق للهاتف الثابت */
+        .whatsapp-icon { color: #2ecc71; font-size: 1.1em; } /* لون أخضر للواتساب */
 
         footer { 
-            background: #333; 
-            color: white; 
+            background: #2c3e50; 
+            color: rgba(255,255,255,0.8); 
             text-align: center; 
-            padding: 25px 15px; 
-            margin-top: 40px; 
-            font-size: 0.9rem;
+            padding: clamp(20px, 4vw, 30px) 15px; 
+            margin-top: 50px; 
+            font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+            border-top: 4px solid var(--gold-bright);
         }
 
-        /* تحسينات خاصة للشاشات الصغيرة جداً */
+        /* تحسينات نهائية للشاشات الصغيرة جداً والعمودية */
         @media (max-width: 480px) {
-            .hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
-            .card { padding: 20px; }
-            .contact-box { padding: 15px; }
+            .hero { clip-path: polygon(0 0, 100% 0, 100% 93%, 0 100%); padding: 60px 15px 80px; }
+            .container { margin-top: -40px; padding: 0 10px; }
+            .card { border-radius: 20px; }
+            .contact-item { flex-direction: column; gap: 5px; } /* تحويل لعناصر عمودية على الجوال الضيق */
+            .contact-item b { min-width: auto; }
+            .contact-box { gap: 10px; }
         }
     </style>
 </head>
@@ -137,7 +201,7 @@
 
     <section class="hero">
         <h1>كلية اللغات والترجمة - جامعة عدن</h1>
-        <p style="font-size: clamp(1rem, 4vw, 1.2rem); opacity: 0.9;">بوابتكم للتحقق الرقمي والخدمات الطلابية المتميزة</p>
+        <p>بوابتكم للتحقق الرقمي والخدمات الطلابية المتميزة</p>
         <a href="https://qrgo.page.link/1hHw8" target="_blank" class="verify-btn">
             <i class="fas fa-qrcode"></i> إضغط هنا لفحص الشهادة
         </a>
@@ -152,15 +216,34 @@
         <div class="card animate-on-scroll" style="border-right: 8px solid var(--primary-light);">
             <h2 class="section-title"><i class="fas fa-address-book"></i> معلومات التواصل</h2>
             <div class="contact-box">
-                <p class="contact-item"><b>رقم الهاتف:</b> 02270731 - 781113344</p>
-                <p class="contact-item"><b>البريد الإلكتروني:</b> facultyoflanguagesaden@gmail.com</p>
-                <p class="contact-item"><b>العنوان:</b> عدن - خورمكسر - بجانب جولة اقرأ مباشرة</p>
+                <p class="contact-item">
+                    <b>الهاتف الثابت:</b>
+                    <span class="contact-value">
+                        <a href="tel:02270731" class="contact-link"><i class="fas fa-phone-alt phone-icon"></i> 02270731</a>
+                    </span>
+                </p>
+                <p class="contact-item">
+                    <b>واتساب / جوال:</b>
+                    <span class="contact-value">
+                        <a href="https://wa.me/967781113344" target="_blank" class="contact-link"><i class="fab fa-whatsapp whatsapp-icon"></i> 781113344</a>
+                    </span>
+                </p>
+                <p class="contact-item">
+                    <b>البريد الإلكتروني:</b>
+                    <span class="contact-value">
+                        <a href="mailto:facultyoflanguagesaden@gmail.com" class="contact-link"><i class="fas fa-envelope" style="color: #e67e22;"></i> facultyoflanguagesaden@gmail.com</a>
+                    </span>
+                </p>
+                <p class="contact-item">
+                    <b>العنوان:</b>
+                    <span class="contact-value"><i class="fas fa-map-marker-alt" style="color: #e74c3c;"></i> عدن - خورمكسر - بجانب جولة اقرأ مباشرة</span>
+                </p>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>جميع الحقوق محفوظة © كلية اللغات والترجمة - جامعة عدن 2026</p>
+        <p>جميع الحقوق محفوظة ©️ كلية اللغات والترجمة - جامعة عدن 2026</p>
     </footer>
 
 </body>
