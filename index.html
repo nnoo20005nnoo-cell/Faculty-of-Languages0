@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة كلية اللغات والترجمة | جامعة عدن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-light: #B22222; 
+            --gold-bright: #FFD700; 
+            --bg-pure: #FFFFFF; 
+            --card-bg: #FFFDF5; 
+            --text-main: #333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-pure);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        @keyframes reveal {
+            from { opacity: 0; transform: scale(0.9) translateY(40px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .animate-on-scroll {
+            animation: reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 10% cover 30%;
+        }
+
+        .hero {
+            min-height: 80vh; /* جعل الارتفاع مرن للجوال */
+            background: linear-gradient(135deg, var(--primary-light), #e74c3c);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+            padding: 40px 20px;
+        }
+
+        .hero h1 { 
+            font-family: 'Amiri', serif; 
+            font-size: clamp(2rem, 8vw, 3.5rem); /* حجم خط مرن يتصغير تلقائياً */
+            margin-bottom: 20px; 
+            line-height: 1.2;
+        }
+        
+        .verify-btn {
+            background-color: var(--gold-bright);
+            color: #8A0000;
+            padding: 15px 35px;
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .verify-btn:hover { transform: scale(1.05); background-color: white; }
+
+        .container { 
+            max-width: 1100px; 
+            margin: -40px auto 50px; 
+            padding: 0 20px; 
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-bottom: 5px solid var(--gold-bright);
+        }
+
+        .section-title {
+            color: var(--primary-light);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-box {
+            background: #fdfdfd;
+            border: 2px dashed var(--primary-light);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-item { 
+            font-size: clamp(1rem, 3.5vw, 1.2rem); 
+            margin: 12px 0; 
+            display: flex; 
+            flex-wrap: wrap; /* لمنع تداخل النص في الشاشات الصغيرة جداً */
+            align-items: center; 
+            gap: 8px; 
+        }
+        .contact-item b { color: var(--primary-light); }
+
+        footer { 
+            background: #333; 
+            color: white; 
+            text-align: center; 
+            padding: 25px 15px; 
+            margin-top: 40px; 
+            font-size: 0.9rem;
+        }
+
+        /* تحسينات خاصة للشاشات الصغيرة جداً */
+        @media (max-width: 480px) {
+            .hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+            .card { padding: 20px; }
+            .contact-box { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>كلية اللغات والترجمة - جامعة عدن</h1>
+        <p style="font-size: clamp(1rem, 4vw, 1.2rem); opacity: 0.9;">بوابتكم للتحقق الرقمي والخدمات الطلابية المتميزة</p>
+        <a href="https://qrgo.page.link/1hHw8" target="_blank" class="verify-btn">
+            <i class="fas fa-qrcode"></i> إضغط هنا لفحص الشهادة
+        </a>
+    </section>
+
+    <div class="container">
+        <div class="card animate-on-scroll">
+            <h2 class="section-title"><i class="fas fa-pen-nib"></i> نبذة عن الكلية</h2>
+            <p>تعد كلية اللغات والترجمة بجامعة عدن صرحاً علمياً رائداً يسعى لتأهيل الكوادر في مجالات اللغة والترجمة، وتقديم بيئة تعليمية متطورة تواكب العصر وتحقق التميز الأكاديمي.</p>
+        </div>
+
+        <div class="card animate-on-scroll" style="border-right: 8px solid var(--primary-light);">
+            <h2 class="section-title"><i class="fas fa-address-book"></i> معلومات التواصل</h2>
+            <div class="contact-box">
+                <p class="contact-item"><b>رقم الهاتف:</b> 02270731 - 781113344</p>
+                <p class="contact-item"><b>البريد الإلكتروني:</b> facultyoflanguagesaden@gmail.com</p>
+                <p class="contact-item"><b>العنوان:</b> عدن - خورمكسر - بجانب جولة اقرأ مباشرة</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © كلية اللغات والترجمة - جامعة عدن 2026</p>
+    </footer>
+
+</body>
+</html>
