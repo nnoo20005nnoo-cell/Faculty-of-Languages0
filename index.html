@@ -29,20 +29,19 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* أنيميشن الانبثاق الخورافي */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(50px) scale(0.9);
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); /* تأثير ارتداد خفيف */
+        @keyframes reveal-popup {
+            0% { opacity: 0; transform: translateY(50px) scale(0.8); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .animate-on-scroll.show {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+        .animate-on-scroll {
+            animation: reveal-popup ease-out both;
+            animation-timeline: view();
+            animation-range: entry 10% cover 40%;
         }
 
         .hero {
-            min-height: 60vh;
+            min-height: auto;
             background: linear-gradient(135deg, var(--primary-light), #e74c3c);
             display: flex;
             flex-direction: column;
@@ -51,21 +50,30 @@
             text-align: center;
             color: white;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-            padding: 60px 20px 100px;
+            padding: 100px 20px 120px;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px clamp(20px, 5vw, 50px);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            margin-bottom: 25px;
         }
 
         .hero h1 { 
             font-family: 'Amiri', serif; 
-            font-size: clamp(2rem, 8vw, 3.8rem);
-            margin-bottom: 20px; 
-            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: clamp(2rem, 8vw, 4rem); 
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
         
         .hero p {
-            font-size: clamp(1rem, 4vw, 1.3rem); 
-            opacity: 0.9; 
+            font-size: clamp(1rem, 4vw, 1.4rem); 
+            opacity: 0.95; 
+            margin-bottom: 30px; 
             max-width: 700px;
-            margin-bottom: 30px;
         }
 
         .verify-btn {
@@ -76,93 +84,78 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .verify-btn:hover { transform: translateY(-5px) scale(1.05); background-color: white; }
+        .verify-btn:hover { transform: translateY(-3px) scale(1.05); }
 
         .container { 
             max-width: 1100px; 
-            margin: -70px auto 50px;
-            padding: 0 20px; 
-            z-index: 5;
+            margin: -60px auto 50px; 
+            padding: 0 15px; 
             position: relative;
+            z-index: 2;
         }
 
         .card {
             background: var(--card-bg);
-            padding: clamp(25px, 6vw, 40px);
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            padding: clamp(25px, 5vw, 40px);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
             margin-bottom: 30px;
-            border-bottom: 6px solid var(--gold-bright);
+            border-bottom: 5px solid var(--gold-bright);
         }
 
         .section-title {
             color: var(--primary-light);
             font-size: clamp(1.5rem, 5vw, 2.2rem);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .contact-box {
             background: #ffffff;
             border: 2px dashed rgba(178, 34, 34, 0.2);
-            border-radius: 25px;
+            border-radius: 20px;
             padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
-        .contact-item { 
-            font-size: clamp(1rem, 3.8vw, 1.2rem); 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-        }
-
-        .contact-item b { color: var(--primary-light); min-width: 110px; }
-
-        .contact-link {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
-        .contact-link:hover { color: var(--primary-light); transform: translateX(-5px); }
-
-        .phone-icon { color: #3498db; } 
-        .whatsapp-icon { color: #2ecc71; }
+        .contact-item { font-size: 1.1rem; display: flex; gap: 12px; }
+        .contact-item b { color: var(--primary-light); min-width: 120px; }
+        .contact-link { text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px; }
 
         footer { 
             background: #2c3e50; 
-            color: white; 
+            color: rgba(255,255,255,0.9); 
             text-align: center; 
-            padding: 40px 20px; 
-            margin-top: 60px;
-            border-top: 5px solid var(--gold-bright);
+            padding: 40px 15px; 
+            margin-top: 50px; 
+            border-top: 4px solid var(--gold-bright);
         }
 
-        @media (max-width: 600px) {
-            .contact-item { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .container { margin-top: -50px; }
+        @media (max-width: 480px) {
+            .hero { padding: 80px 15px 100px; }
+            .contact-item { flex-direction: column; gap: 5px; }
         }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <h1>كلية اللغات والترجمة - جامعة عدن</h1>
-        <p>بوابتكم للتحقق الرقمي والخدمات الطلابية المتميزة</p>
+        <div class="hero-badge animate-on-scroll">
+            <h1>كلية اللغات والترجمة</h1>
+            <h2 style="font-family: 'Amiri'; font-size: 1.8rem; margin-top: 10px; opacity: 0.9;">جامعة عدن</h2>
+        </div>
+        <p>البوابة الإلكترونية الرسمية للتحقق والخدمات - اليمن</p>
         <a href="https://qrgo.page.link/1hHw8" target="_blank" class="verify-btn">
             <i class="fas fa-qrcode"></i> إضغط هنا لفحص الشهادة
         </a>
@@ -170,48 +163,42 @@
 
     <div class="container">
         <div class="card animate-on-scroll">
-            <h2 class="section-title"><i class="fas fa-pen-nib"></i> نبذة عن الكلية</h2>
-            <p>تعد كلية اللغات والترجمة بجامعة عدن صرحاً علمياً رائداً يسعى لتأهيل الكوادر في مجالات اللغة والترجمة، وتقديم بيئة تعليمية متطورة تواكب العصر وتحقق التميز الأكاديمي.</p>
+            <h2 class="section-title"><i class="fas fa-book-reader"></i> نبذة عن الكلية</h2>
+            <p>تعد كلية اللغات والترجمة بجامعة عدن (اليمن) صرحاً علمياً رائداً يسعى لتأهيل الكوادر المتميزة في مجالات اللغة والترجمة، وتقديم بيئة تعليمية متطورة تواكب العصر وتحقق التميز الأكاديمي. كما تلتزم الكلية بتزويد طلابها بالمهارات اللغوية والبحثية اللازمة لفتح آفاق واسعة للعمل والإبداع في سوق العمل المحلي والدولي.</p>
         </div>
 
         <div class="card animate-on-scroll" style="border-right: 8px solid var(--primary-light);">
-            <h2 class="section-title"><i class="fas fa-address-book"></i> معلومات التواصل</h2>
+            <h2 class="section-title"><i class="fas fa-address-card"></i> معلومات التواصل الدولية</h2>
             <div class="contact-box">
                 <p class="contact-item">
                     <b>الهاتف الثابت:</b>
-                    <a href="tel:02270731" class="contact-link"><i class="fas fa-phone-alt phone-icon"></i> 02270731</a>
+                    <span class="contact-value">
+                        <a href="tel:+9672270731" class="contact-link"><i class="fas fa-phone-alt"></i> +967 2 270731</a>
+                    </span>
                 </p>
                 <p class="contact-item">
                     <b>واتساب / جوال:</b>
-                    <a href="https://wa.me/967781113344" target="_blank" class="contact-link"><i class="fab fa-whatsapp whatsapp-icon"></i> 781113344</a>
+                    <span class="contact-value">
+                        <a href="https://wa.me/967781113344" target="_blank" class="contact-link"><i class="fab fa-whatsapp" style="color: #2ecc71;"></i> +967 781113344</a>
+                    </span>
                 </p>
                 <p class="contact-item">
-                    <b>البريد:</b>
-                    <a href="mailto:facultyoflanguagesaden@gmail.com" class="contact-link"><i class="fas fa-envelope" style="color: #e67e22;"></i> facultyoflanguagesaden@gmail.com</a>
+                    <b>البريد الإلكتروني:</b>
+                    <span class="contact-value">
+                        <a href="mailto:facultyoflanguagesaden@gmail.com" class="contact-link"><i class="fas fa-envelope" style="color: #e67e22;"></i> facultyoflanguagesaden@gmail.com</a>
+                    </span>
                 </p>
                 <p class="contact-item">
-                    <b>العنوان:</b>
-                    <span style="display:flex; align-items:center; gap:10px;"><i class="fas fa-map-marker-alt" style="color: #e74c3c;"></i> عدن - خورمكسر - بجانب جولة اقرأ</span>
+                    <b>العنوان الرسمي:</b>
+                    <span class="contact-value"><i class="fas fa-map-marker-alt" style="color: #e74c3c;"></i> الجمهورية اليمنية - عدن - خورمكسر - بجانب جولة اقرأ</span>
                 </p>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>جميع الحقوق محفوظة ©️ كلية اللغات والترجمة - جامعة عدن 2026</p>
+        <p>جميع الحقوق محفوظة ©️ كلية اللغات والترجمة - جامعة عدن - اليمن 2026</p>
     </footer>
-
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
-    </script>
 
 </body>
 </html>
